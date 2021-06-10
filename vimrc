@@ -34,9 +34,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'thaerkh/vim-indentguides'
 Plug 'diepm/vim-rest-console'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -162,8 +159,8 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 " Move to next mayus
 map m /[A-Z]<cr><esc>:noh<return>a
 
-nnoremap <leader><space> :FZF<cr>
-nnoremap <leader>b :FZFBuffers<cr>
+nnoremap <leader><space> :Files<cr>
+nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>t :TestNearest<cr>
 nnoremap <leader>o :only<cr>
 
