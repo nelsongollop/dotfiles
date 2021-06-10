@@ -95,8 +95,8 @@
   enabled = true
 
 [user]
-	name = andresgutgon
-	email = andresgutgon@gmail.com
+	name = nelsongollop
+	email = nelson.gollop@gmail.com
 
 ## Hack needed because Go language get packages in this way:
 ## git clone https://github.com/something/lol

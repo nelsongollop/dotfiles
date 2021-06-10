@@ -27,9 +27,16 @@ Plug 'cespare/vim-toml'           " Toml syntax
 Plug 'elixir-editors/vim-elixir'  " Vim configuration files for Elixir
 Plug 'wellle/targets.vim'         " Modify faster (){}[] contents
 Plug 'chr4/nginx.vim'             " Nginx syntax highlight
+Plug 'kien/ctrlp.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder
 Plug 'junegunn/fzf.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'thaerkh/vim-indentguides'
+Plug 'diepm/vim-rest-console'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -63,8 +70,8 @@ set encoding=utf-8
 
 "colorscheme meta5 " My favourite schemecolor
 
-set background=dark
-colorscheme PaperColor
+"set background=dark
+colorscheme dracula
 
 let test#strategy = "dispatch"
 let test#ruby#rspec#executable = 'bundle exec rspec %'
@@ -114,10 +121,6 @@ vmap < <gv
 vmap > >gv
 
 " Disable arrow keys
-map <up>    <nop>
-map <down>  <nop>
-map <left>  <nop>
-map <right> <nop>
 
 " Disable markdown folding
 let g:vim_markdown_folding_disabled = 1
@@ -151,7 +154,7 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
 
 " FZF
-let g:fzf_command_prefix = 'FZF'
+" let g:fzf_command_prefix = 'FZF'
 let g:fzf_commits_log_options = '--pretty=oneline'
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -159,7 +162,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 " Move to next mayus
 map m /[A-Z]<cr><esc>:noh<return>a
 
-nnoremap <leader><space> :FZFFiles<cr>
+nnoremap <leader><space> :FZF<cr>
 nnoremap <leader>b :FZFBuffers<cr>
 nnoremap <leader>t :TestNearest<cr>
 nnoremap <leader>o :only<cr>
@@ -169,6 +172,10 @@ nnoremap <silent><leader>j :wincmd j<CR>
 nnoremap <silent><leader>k :wincmd k<CR>
 nnoremap <silent><leader>l :wincmd l<CR>
 nnoremap <silent><leader>h :wincmd h<CR>
+
+" Move between tabs
+nnoremap <silent><leader><Right> :tabnext<CR>
+nnoremap <silent><leader><Left> :tabprevious<CR>
 
 " Move windows around
 nnoremap <silent><leader>wJ :wincmd J<CR>
@@ -206,6 +213,8 @@ let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your w
 
 let delimitMate_expand_cr=1
 
+nnoremap <silent><leader>i :call VrcQuery()<CR>
+
 " TypeScript
 let g:syntastic_typescript_tsc_args = "-t ES5 -m commonjs --experimentalDecorators --emitDecoratorMetadata --sourceMap true --moduleResolution node"
 
@@ -215,3 +224,8 @@ let g:syntastic_typescript_tsc_args = "-t ES5 -m commonjs --experimentalDecorato
 :command Wq wq
 :command W w
 :command Q q
+let g:ackprg = 'ag --vimgrep'
+
+noremap <leader>a :Ag<space>
+
+let g:ctrlp_match_window = 'results:25'

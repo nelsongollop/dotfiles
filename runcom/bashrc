@@ -6,6 +6,8 @@ else
   OS=$(uname -s)
 fi
 
+alias mysql_env="source /srv/app/.env; mysql -u$DATABASE_USERNAME -h$DATABASE_HOST -p$DATABASE_PASSWORD"
+
 ## set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
@@ -37,3 +39,4 @@ if [ -f ~/.fzf.bash ]; then
   source ~/.fzf.bash
 fi
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
